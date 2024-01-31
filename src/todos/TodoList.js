@@ -3,16 +3,24 @@ import { connect } from 'react-redux';
 import { removeTodo, markTodoAsCompleted } from './actions';
 import TodoListItem from './TodoListItem';
 import NewTodoForm from './NewTodoForm';
-import {displayAlert} from './thunks';
-import './TodoList.css';
+import { displayAlert } from './thunks';
+import styled from 'styled-components';
 
+const ListWrapper= styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+`;
 const TodoList = ({ todos = [], onRemovePressed, onCompletedPressed }) => (
-    <div className="list-wrapper">
+    <ListWrapper>
         <NewTodoForm/>
         {todos.map(todo => <TodoListItem todo={todo}
             onRemovePressed={onRemovePressed}
             onCompletedPressed={onCompletedPressed} />)}
-    </div>
+    </ListWrapper>
 )
 
 const mapStateToProps = state => ({
